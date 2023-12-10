@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('name');
+            $table->text('user_alamat');
+            $table->string('user_hp',20);
+            $table->string('user_pos', 25);
+            $table->tinyInteger('user_role');
+            $table->tinyInteger('user_aktif');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

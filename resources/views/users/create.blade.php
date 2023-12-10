@@ -7,7 +7,7 @@
             <hr>
         </div>
         <div class="card-body">
-            <form class="row g-3" action="{{ route('store') }}" method="POST">
+            <form class="row g-3" action="{{ route('user_store') }}" method="POST">
                 @csrf
                 <div class="col-md-6">
                     <label class="form-label">Email</label>

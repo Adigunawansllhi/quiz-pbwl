@@ -22,6 +22,10 @@
                     <h1 class="text-center">Login</h1>
                     <form method="POST" action="{{ route('login-proses') }}">
                         @csrf
+
+                        @error('message')
+                            {{ $message }}
+                        @enderror
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" required>

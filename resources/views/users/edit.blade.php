@@ -7,7 +7,7 @@
             <hr>
         </div>
         <div class="card-body">
-            <form class="row g-3" action="{{ route('update',['id'=>$data->id]) }}" method="POST">
+            <form class="row g-3" action="{{ route('user_update', ['id' => $data->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="col-md-6">

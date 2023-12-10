@@ -39,16 +39,20 @@ class UserController extends Controller
 
         // if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
-        $data['email']      = $request->email;
-        $data['name']       = $request->name;
-        $data['password']   = Hash::make($request->email);
-        $data['user_alamat']      = $request->user_alamat;
-        $data['user_hp']      = $request->user_hp;
-        $data['user_pos']      = $request->user_pos;
-        $data['user_role']      = $request->user_role;
-        $data['user_aktif']      = $request->user_aktif;
+        // $data['email']      = $request->email;
+        // $data['name']       = $request->name;
+        // $data['password']   = Hash::make($request->password);
+        // $data['user_alamat']      = $request->user_alamat;
+        // $data['user_hp']      = $request->user_hp;
+        // $data['user_pos']      = $request->user_pos;
+        // $data['user_role']      = $request->user_role;
+        // $data['user_aktif']      = $request->user_aktif;
 
-        User::create($data);
+        // User::create($data);
+
+        $user = new User($request->input());
+        $user->password = Hash::make($request->password);
+        $user->save();
         return redirect()->route('user');
     }
 

@@ -5,18 +5,13 @@
             <h3 class="card-title">Data Users</h3>
         </div>
         <div class="card-body">
-            <a href="{{ route('user_create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('gol_create') }}" class="btn btn-primary">Tambah Data</a>
             <table class="table table-striped text-center">
                 <thead>
                     <tr>
                         <th style="width: 10px">No</th>
-                        <th>Email</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>No Hp</th>
-                        <th>Pos</th>
-                        <th>Role</th>
-                        <th>Aktif</th>
+                        <th>Kode Golongan</th>
+                        <th>Nama Golongan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -25,25 +20,14 @@
                     @foreach ($data as $d)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $d->email }}</td>
-                            <td>{{ $d->name }}</td>
-                            <td>{{ $d->user_alamat }}</td>
-                            <td>{{ $d->user_hp }}</td>
-                            <td>{{ $d->user_pos }}</td>
-                            <td>{{ $d->user_role }}</td>
-                            <td>{{ $d->user_aktif }}</td>
+                            <td>{{ $d->gol_kode }}</td>
+                            <td>{{ $d->gol_nama }}</td>
                             <td>
                                 <div class="btn-group gap-3" role="group">
-                                    <a href="{{ route('user_edit', ['id' => $d->id]) }}" class="btn btn-warning">
+                                    <a href="{{ route('gol_edit', ['id' => $d->id]) }}" class="btn btn-warning">
                                         <i class="fas fa-edit"></i>
                                     </a>
-
-                                    {{-- <form action="{{ route('user_edit', ['id' => $d->id]) }}" method="POST">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form> --}}
-                                    <form action="{{ route('user_delete', ['id' => $d->id]) }}" method="POST">
+                                    <form action="{{ route('gol_delete', ['id' => $d->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger">

@@ -14,21 +14,22 @@ class LoginController extends Controller
 
     public function login_proses(Request $request)
     {
-        $request->validate([
-            'email'     => 'required',
-            'password'  => 'required'
+        $data = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
-        $data = [
-            'email'     => $request->email,
-            'password'  => $request->password
-        ];
+        // dd($data); // Add this line for debugging
 
         if (Auth::attempt($data)) {
-            return redirect()->route('home');
-        } else {
-            return redirect()->route('login')->with('failed', 'Email atau password salah');
+            $request->session()->regenerate();
+
+            return redirect()->intended('home');
         }
+
+        return back()->withErrors([
+            'message' => 'Email atau password salah'
+        ]);
     }
 
     public function logout()

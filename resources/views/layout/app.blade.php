@@ -33,21 +33,21 @@
                                 href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color : #0f0e17" href="#">Pelanggan</a>
+                            <a class="nav-link" style="color : #0f0e17" href="{{ route('pelanggan') }}">Pelanggan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color : #0f0e17" href="{{ route('user') }}">User</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color : #0f0e17" href="#">Golongan</a>
+                            <a class="nav-link" style="color : #0f0e17" href="{{ route('gol_view') }}">Golongan</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color : #0f0e17"href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Adi Gunawan
+                                {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">Logout</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
