@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="card col-10 m-auto mt-3 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+    <div class="card col-8 m-auto mt-3 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
         <div class="header text-center">
             <h4>Input Data User</h4>
             <hr>
@@ -34,24 +34,24 @@
                     <label class="form-label">Alamat</label>
                     <input type="text" class="form-control" name="user_alamat">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="form-label">No Hp</label>
                     <input type="text" class="form-control" name="user_hp">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="form-label">Pos</label>
                     <input type="text" class="form-control" name="user_pos">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="form-label">Role</label>
                     <input type="text" class="form-control" name="user_role">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="form-label">Status</label>
                     <input type="text" class="form-control" name="user_aktif">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn text-white" style="background-color: #ff8906">Simpan</button>
                 </div>
             </form>
         </div>

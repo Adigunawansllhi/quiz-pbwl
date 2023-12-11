@@ -14,12 +14,12 @@
         <div class="row align-items-center text-white">
             <div class="col-md-6" style="color : #ff8906">
                 <h1>SELAMAT DATANG DI</h1>
-                <h1>PROGRAM CRUD LARAVEL SI1</h1>
-                <h4 class="text-white">Silahkan Login Untuk Melanjutkan</h4>
+                <h1 >PROGRAM CRUD LARAVEL SI1</h1>
             </div>
             <div class="col-md-6">
-                <div class="card p-4" style="backgound-color : #fffffe">
+                <div class="card p-4 shadow p-3 mb-5 bg-body-tertiary rounded col-10" style="backgound-color : #fffffe">
                     <h1 class="text-center">Login</h1>
+                    <hr>
                     <form method="POST" action="{{ route('login-proses') }}">
                         @csrf
 

@@ -1,11 +1,11 @@
 @extends('layout.app')
 @section('content')
     <div class="card col-12 m-4">
-        <div class="card-header">
+        <div class="card-header text-center">
             <h3 class="card-title">Data Pelanggan</h3>
         </div>
         <div class="card-body">
-            <a href="{{ route('pel_create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('pel_create') }}" class="btn mb-4 text-white" style="background-color: #ff8906">Tambah Data</a>
             <table class="table table-striped text-center">
                 <thead>
                     <tr>
@@ -39,8 +39,9 @@
                             <td>{{ $d->pel_aktif }}</td>
                             <td>{{ $d->user->name }}</td>
                             <td>
-                                <div class="btn-group gap-3" role="group">
-                                    <a href="{{ route('pel_edit', ['id' => $d->id]) }}" class="btn btn-warning">
+                                <div class="btn-group gap-2" role="group">
+                                    <a href="{{ route('pel_edit', ['id' => $d->id]) }}" class="btn btn-info"
+                                        style="border-radius: 5px; padding: 5px 10px;">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form action="{{ route('pel_delete', ['id' => $d->id]) }}" method="POST">
@@ -57,7 +58,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- /.card-body -->
     </div>
 @endsection

@@ -1,11 +1,12 @@
 @extends('layout.app')
+
 @section('content')
     <div class="card col-12 m-4">
-        <div class="card-header">
+        <div class="card-header text-center">
             <h3 class="card-title">Data Users</h3>
         </div>
         <div class="card-body">
-            <a href="{{ route('user_create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('user_create') }}" class="btn text-white mb-4" style="background-color: #ff8906">Tambah Data</a>
             <table class="table table-striped text-center">
                 <thead>
                     <tr>
@@ -33,16 +34,13 @@
                             <td>{{ $d->user_role }}</td>
                             <td>{{ $d->user_aktif }}</td>
                             <td>
-                                <div class="btn-group gap-3" role="group">
-                                    <a href="{{ route('user_edit', ['id' => $d->id]) }}" class="btn btn-warning">
+                                <div class="btn-group gap-2" role="group">
+                                    <a href="{{ route('user_edit', ['id' => $d->id]) }}" class="btn btn-info"
+                                        style="border-radius: 5px; padding: 5px 10px;">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    {{-- <form action="{{ route('user_edit', ['id' => $d->id]) }}" method="POST">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form> --}}
+
                                     <form action="{{ route('user_delete', ['id' => $d->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
