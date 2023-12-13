@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GolonganRequest;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\Pelanggan;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::get();
+        $data = User::WhereNotIn('id', [Auth::user()->id])->get();
         return view('users.index', compact('data'));
     }
 
@@ -29,28 +34,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'email'     => 'required|email',
-        //     'name'      => 'required',
-        //     'password'  => 'required',
-        // ]);
+        $data = $request->validated();
 
-        // if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-
-        // $data['email']      = $request->email;
-        // $data['name']       = $request->name;
-        // $data['password']   = Hash::make($request->password);
-        // $data['user_alamat']      = $request->user_alamat;
-        // $data['user_hp']      = $request->user_hp;
-        // $data['user_pos']      = $request->user_pos;
-        // $data['user_role']      = $request->user_role;
-        // $data['user_aktif']      = $request->user_aktif;
-
-        // User::create($data);
-
-        $user = new User($request->input());
+        $user = new User($data);
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('user');
@@ -69,7 +57,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $data = User::find($id);
+        $data = User::findOrFail($id);
         return view('users.edit', compact('data'));
     }
 
@@ -79,19 +67,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        // dd($request->all());
-        $data['email']      = $request->email;
-        $data['name']       = $request->name;
-        $data['password']   = Hash::make($request->email);
-        $data['user_alamat']      = $request->user_alamat;
-        $data['user_hp']      = $request->user_hp;
-        $data['user_pos']      = $request->user_pos;
-        $data['user_role']      = $request->user_role;
-        $data['user_aktif']      = $request->user_aktif;
+        $data = $request->validated();
 
-        User::whereId($id)->update($data);
+        $user = User::findOrFail($id);
+        if ($request->input('password') != '') {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->update($data);
+
         return redirect()->route('user');
     }
 
@@ -102,6 +88,10 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         // dd($id);
+        $pelanggan = Pelanggan::where('user_id', $id)->exists();
+        if ($pelanggan) {
+            return redirect()->back();
+        }
         $data = User::find($id);
         $data->delete();
         return redirect()->route('user');

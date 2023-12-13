@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GolonganRequest;
 use App\Models\Golongan;
+use App\Models\Pelanggan;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class GolonganController extends Controller
@@ -27,11 +30,9 @@ class GolonganController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GolonganRequest $request)
     {
-        $data['gol_kode']      = $request->gol_kode;
-        $data['gol_nama']       = $request->gol_nama;
-
+        $data = $request->validated();
 
         Golongan::create($data);
         return redirect()->route('gol_view');
@@ -50,19 +51,18 @@ class GolonganController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Golongan::find($id);
+        $data = Golongan::findOrFail($id);
         return view('golongan.edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(GolonganRequest $request, string $id)
     {
-        $data['gol_kode']      = $request->gol_kode;
-        $data['gol_nama']       = $request->gol_nama;
+        $data = $request->validated();
 
-        Golongan::whereId($id)->update($data);
+        Golongan::findOrFail($id)->update($data);
         return redirect()->route('gol_view');
     }
 
@@ -71,6 +71,10 @@ class GolonganController extends Controller
      */
     public function destroy(string $id)
     {
+        $pelanggan = Pelanggan::where('gol_id', $id)->exists();
+        if ($pelanggan) {
+            return redirect()->back();
+        }
         $data = Golongan::find($id);
         $data->delete();
         return redirect()->route('gol_view');

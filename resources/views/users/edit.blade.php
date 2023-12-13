@@ -19,8 +19,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4" name="password"
-                        value="{{ $data->password }}">
+                    <input type="password" class="form-control" id="inputPassword4" name="password">
                     {{-- @error('password')
                         <small>{{ $message }}</small>
                     @enderror --}}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PelangganRequest;
 use App\Models\Golongan;
 use App\Models\Pelanggan;
 use App\Models\User;
@@ -31,22 +32,23 @@ class PelangganController extends Controller
 
     // app/Http/Controllers/PelangganController.php
 
-    public function store(Request $request)
+    public function store(PelangganRequest $request)
     {
-        $data = $request->validate([
-            'gol_id' => 'required',
-            'pel_no' => 'required',
-            'pel_nama' => 'required',
-            'pel_alamat' => 'required',
-            'pel_hp' => 'required',
-            'pel_ktp' => 'required',
-            'pel_seri' => 'required',
-            'pel_meteran' => 'required',
-            'pel_aktif' => 'required',
-            'user_id' => 'required',
-        ]);
+        // $data = $request->validate([
+        //     'gol_id' => 'required',
+        //     'pel_no' => 'required',
+        //     'pel_nama' => 'required',
+        //     'pel_alamat' => 'required',
+        //     'pel_hp' => 'required',
+        //     'pel_ktp' => 'required',
+        //     'pel_seri' => 'required',
+        //     'pel_meteran' => 'required',
+        //     'pel_aktif' => 'required',
+        //     'user_id' => 'required',
+        // ]);
 
         // Menyimpan data pelanggan ke dalam database
+        $data = $request->validated();
 
         $pelanggan = new Pelanggan($data);
         $pelanggan->save();
@@ -79,20 +81,21 @@ class PelangganController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PelangganRequest $request, string $id)
     {
-        $data = $request->validate([
-            'gol_id' => 'required',
-            'pel_no' => 'required',
-            'pel_nama' => 'required',
-            'pel_alamat' => 'required',
-            'pel_hp' => 'required',
-            'pel_ktp' => 'required',
-            'pel_seri' => 'required',
-            'pel_meteran' => 'required',
-            'pel_aktif' => 'required',
-            'user_id' => 'required',
-        ]);
+        // $data = $request->validate([
+        //     'gol_id' => 'required',
+        //     'pel_no' => 'required',
+        //     'pel_nama' => 'required',
+        //     'pel_alamat' => 'required',
+        //     'pel_hp' => 'required',
+        //     'pel_ktp' => 'required',
+        //     'pel_seri' => 'required',
+        //     'pel_meteran' => 'required',
+        //     'pel_aktif' => 'required',
+        //     'user_id' => 'required',
+        // ]);
+        $data = $request->validated();
 
         Pelanggan::whereId($id)->update($data);
         return redirect()->route('pelanggan');
