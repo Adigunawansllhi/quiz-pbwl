@@ -14,9 +14,4 @@ class Golongan extends Model
         'gol_kode',
         'gol_nama',
     ];
-
-    // public function pelanggans(): HasMany
-    // {
-    //     return $this->hasMany(Pelanggan::class, 'gol_id', 'id');
-    // }
 }

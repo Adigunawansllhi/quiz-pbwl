@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 Route::group(['middleware' => 'guest'], function () {
 
     Route::get('/', [App\Http\Controllers\LoginController::class, 'index'])->name('login');

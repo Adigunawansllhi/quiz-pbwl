@@ -13,23 +13,14 @@
                 <div class="col-md-6">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" id="inputEmail4" name="email" value="{{ $data->email }}">
-                    {{-- @error('email')
-                        <small>{{ $message }}</small>
-                    @enderror --}}
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Password</label>
                     <input type="password" class="form-control" id="inputPassword4" name="password">
-                    {{-- @error('password')
-                        <small>{{ $message }}</small>
-                    @enderror --}}
                 </div>
                 <div class="col-12">
                     <label class="form-label">Nama</label>
                     <input type="text" class="form-control" name="name" value="{{ $data->name }}">
-                    {{-- @error('name')
-                        <small>{{ $message }}</small>
-                    @enderror --}}
                 </div>
                 <div class="col-12">
                     <label class="form-label">Alamat</label>

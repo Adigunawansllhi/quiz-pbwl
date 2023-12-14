@@ -39,8 +39,6 @@
                                         style="border-radius: 5px; padding: 5px 10px;">
                                         <i class="fas fa-edit"></i>
                                     </a>
-
-
                                     <form action="{{ route('user_delete', ['id' => $d->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf

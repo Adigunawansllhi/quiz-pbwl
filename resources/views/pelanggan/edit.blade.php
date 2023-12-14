@@ -6,7 +6,6 @@
             <h3 class="card-title">Edit Data Pelanggan</h3>
         </div>
         <div class="card-body">
-            <!-- Formulir untuk mengedit data pelanggan -->
             <form action="{{ route('pel_update', ['id' => $data->id]) }}" method="POST" class="mt-3">
                 @csrf
                 @method('PUT') <!-- Tambahkan ini untuk menandai bahwa ini adalah request PUT -->
@@ -87,12 +86,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Lanjutkan dengan input lainnya sesuai kebutuhan -->
-                {{-- <div class="row mt-3">
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </div> --}}
         </div>
         </form>
     </div>

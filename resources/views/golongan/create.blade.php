@@ -12,9 +12,6 @@
                 <div class="col-12">
                     <label class="form-label">Kode Golongan</label>
                     <input type="text" class="form-control" name="gol_kode">
-                    {{-- @error('name')
-                        <small>{{ $message }}</small>
-                    @enderror --}}
                 </div>
                 <div class="col-12">
                     <label class="form-label">Nama Golongan</label>
